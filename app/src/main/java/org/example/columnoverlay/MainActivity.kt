@@ -17,6 +17,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +31,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -56,11 +60,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    var showOverlay by remember { mutableStateOf(true) }
+    var showOverlay by remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = Unit) {
         while(true) {
-            delay(1000.milliseconds)
+            delay(2000.milliseconds)
             showOverlay = !showOverlay
         }
     }
@@ -86,28 +90,38 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                         Box(
                             modifier = Modifier
                                 .padding(start = 12.dp, end = 12.dp, bottom = 24.dp, top = 24.dp)
-                                .background(Color.Yellow.copy(green = 0.66f))
-
                         ) {
-                            Text(
+                            ElevatedCard(
                                 modifier = Modifier
-                                    .padding(
-                                        start = 12.dp,
-                                        end = 12.dp,
-                                        bottom = 24.dp,
-                                        top = 24.dp
+                                    .shadow(
+                                        elevation = 2.dp,
+                                        shape = MaterialTheme.shapes.medium
                                     )
-                                    .background(Color.Yellow.copy(green = 0.33f))
                                 ,
-                                text = "Hello $name",
-                                color = Color.White
-                            )
+                                colors = CardDefaults.elevatedCardColors(
+                                    containerColor = Color.Yellow.copy(green = 0.66f)
+                                )
+                            ) {
+                                Text(
+                                    modifier = Modifier
+                                        .padding(
+                                            start = 12.dp,
+                                            end = 12.dp,
+                                            bottom = 24.dp,
+                                            top = 24.dp
+                                        )
+                                        .background(Color.Yellow.copy(green = 0.33f))
+                                    ,
+                                    text = "Hello $name",
+                                    color = Color.White
+                                )
+                            }
                             // Overlay
                             if(showOverlay) {
                                 Box(
                                     modifier = Modifier
                                         .matchParentSize()
-                                        .background(Color.Black.copy(alpha = 0.5f))
+                                        .background(Color.Black.copy(alpha = 0.1f))
                                 )
                             }
                         }
