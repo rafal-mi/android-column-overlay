@@ -35,6 +35,8 @@ fun AnimatedCard(
 ) {
     Column(
         modifier = Modifier
+            .background(Color.Yellow.copy(green = 0.66f))
+            .padding(12.dp)
             .width(IntrinsicSize.Max)
         ,
         horizontalAlignment = Alignment.CenterHorizontally
