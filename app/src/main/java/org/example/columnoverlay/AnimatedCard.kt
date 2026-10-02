@@ -2,6 +2,7 @@ package org.example.columnoverlay
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -23,10 +26,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.example.columnoverlay.App.Companion.LINES
 import org.example.columnoverlay.ui.theme.ColumnOverlayTheme
 
 @Composable
@@ -35,7 +40,7 @@ fun AnimatedCard(
 ) {
     Column(
         modifier = Modifier
-            .background(Color.Yellow.copy(green = 0.66f))
+            .background(Color.Yellow.copy(green = 0.6f))
             .padding(12.dp)
             .width(IntrinsicSize.Max)
         ,
@@ -43,7 +48,7 @@ fun AnimatedCard(
     ) {
         Row(
             modifier = Modifier
-                .alpha(0.5f)
+                //.alpha(0.5f)
                 .fillMaxWidth()
             ,
             verticalAlignment = Alignment.CenterVertically,
@@ -56,9 +61,15 @@ fun AnimatedCard(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(Icons.Outlined.Edit, "")
+                    Icon(imageVector = Icons.Outlined.Edit,
+                        tint = Color.White,
+                        contentDescription = ""
+                        )
                     Spacer(Modifier.width(8.dp))
-                    Text("Edit")
+                    Text(
+                        text = "Edit",
+                        color = Color.White
+                    )
                 }
             }
 
@@ -75,19 +86,30 @@ fun AnimatedCard(
                 containerColor = Color.Yellow.copy(green = 0.66f)
             )
         ) {
-            Text(
+            val scrollState = rememberScrollState()
+            Box(
                 modifier = Modifier
-                    .padding(
-                        start = 12.dp,
-                        end = 12.dp,
-                        bottom = 24.dp,
-                        top = 24.dp
-                    )
-                    .background(Color.Yellow.copy(green = 0.33f))
-                ,
-                text = "Hello $name",
-                color = Color.White
-            )
+                    .verticalScroll(scrollState)
+            ) {
+                var text = "Hello $name"
+                for(i in 2..LINES) {
+                    text += "\n plus line $i"
+                }
+                Text(
+                    modifier = Modifier
+                        .padding(
+                            start = 12.dp,
+                            end = 12.dp,
+                            bottom = 24.dp,
+                            top = 24.dp
+                        )
+                        .background(Color.Yellow.copy(green = 0.5f))
+                    ,
+                    text = text,
+                    color = Color.White
+                )
+            }
+
         }
     }
 

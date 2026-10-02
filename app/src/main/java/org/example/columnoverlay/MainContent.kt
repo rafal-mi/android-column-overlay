@@ -126,35 +126,35 @@ fun MainContent(name: String, modifier: Modifier = Modifier) {
                         }
                     }
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                                ,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .height(200.dp)
-                                .padding(start = 12.dp, end = 12.dp, bottom = 24.dp, top = 24.dp)
-                                .background(Color.Yellow.copy(green = 0.66f))
-
-                        ) {
-                            Text(
-                                modifier = Modifier
-                                    .background(Color.Yellow.copy(green = 0.33f))
-                                    .padding(
-                                        start = 12.dp,
-                                        end = 12.dp,
-                                        bottom = 24.dp,
-                                        top = 24.dp
-                                    )
-                                    .align(Alignment.BottomCenter)
-                                ,
-                                text = "Hello $name",
-                                color = Color.White
-                            )
-                        }
-                    }
+//                    Row(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                                ,
+//                        horizontalArrangement = Arrangement.Center
+//                    ) {
+//                        Box(
+//                            modifier = Modifier
+//                                .height(200.dp)
+//                                .padding(start = 12.dp, end = 12.dp, bottom = 24.dp, top = 24.dp)
+//                                .background(Color.Yellow.copy(green = 0.66f))
+//
+//                        ) {
+//                            Text(
+//                                modifier = Modifier
+//                                    .background(Color.Yellow.copy(green = 0.4f))
+//                                    .padding(
+//                                        start = 12.dp,
+//                                        end = 12.dp,
+//                                        bottom = 24.dp,
+//                                        top = 24.dp
+//                                    )
+//                                    .align(Alignment.BottomCenter)
+//                                ,
+//                                text = "Hello $name",
+//                                color = Color.White
+//                            )
+//                        }
+//                    }
 
                 }
 
